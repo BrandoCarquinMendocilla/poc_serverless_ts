@@ -1,0 +1,9 @@
+region:
+  code:
+    DESA: UE2
+    TEST: UE2
+    PROD: UE1
+  abrev:
+    DESA: us-east-2
+    TEST: us-east-2
+    PROD: us-east-1

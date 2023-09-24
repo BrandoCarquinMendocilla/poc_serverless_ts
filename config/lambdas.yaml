@@ -1,0 +1,12 @@
+validate-card:
+  handler: src/TokenCard.handler
+  events:
+    - http:
+        method: POST
+        path: /v2/tokens
+card:
+  handler: src/ChangeCard.handler
+  events:
+    - http:
+        method: POST
+        path: /v2/changes

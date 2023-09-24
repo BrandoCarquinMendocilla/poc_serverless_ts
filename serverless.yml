@@ -1,0 +1,28 @@
+service: ${self:custom.stackLambda}
+
+useDotenv: true
+
+provider:
+  name: aws
+  region: ${self:custom.regions.abrev}
+  runtime: nodejs16.x
+  timeout: 60
+  memorySize: 2048
+  stage: ${opt:stage,'DESA'}
+
+custom:
+  name: API-POC-SERVERLESS
+  stackLambda: ${self:custom.name}-TYPESCRIPT
+  regions:
+    abrev: ${file(config/custom.yaml):region.abrev.${self:provider.stage}}
+    code: ${file(config/custom.yaml):region.code.${self:provider.stage}}
+  esbuild:
+    bundle: true
+    minify: false
+
+plugins:
+  - serverless-esbuild
+  - serverless-offline
+
+functions: 
+  ${file(config/lambdas.yaml)}  

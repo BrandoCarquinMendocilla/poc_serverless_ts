@@ -1,0 +1,8 @@
+{
+    "statusCode": 200,
+    "body": {
+        "code": 200,
+        "token": "KbPRPTx0loqb5ovQ",
+        "message": "Token generado exitosamente - La información ingresada es correcta."
+    }
+}
