@@ -14,3 +14,23 @@ export const validateCardType = (cardNumber: string, cvv: string) => {
         return false;
     }
 };
+
+export const validarLuhn = (numeroTarjeta: string) => {
+    const digits = numeroTarjeta.toString().split('').reverse();
+    let suma = 0;
+  
+    for (let i = 0; i < digits.length; i++) {
+      let num = parseInt(digits[i]);
+  
+      if (i % 2 === 1) {
+        num *= 2;
+        if (num > 9) {
+          num -= 9;
+        }
+      }
+  
+      suma += num;
+    }
+  
+    return suma % 10 === 0;
+}

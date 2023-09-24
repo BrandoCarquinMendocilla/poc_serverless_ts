@@ -1,6 +1,6 @@
 import { validateCardRequest } from './valid/TokenCardValidate';
 import { generateRandomToken } from '../common/GenerateToken';
-import { validateCardType } from './support/CardSupport';
+import { validarLuhn, validateCardType } from './support/CardSupport';
 import { CONSTANTS_CARD } from './constant/CardConstant';
 import { CONSTANTS } from '../common/constant/ErrorConstant';
 import { registrarToken } from './service/MongoService';
@@ -18,6 +18,19 @@ export const handler: any = async (event: any) => {
                 })
             };
         }
+        const validLuhn = validarLuhn(requestData.card_number);
+        if(!validLuhn){
+            return {
+                statusCode: CONSTANTS.CODE.BAD_REQUEST,
+                body: JSON.stringify({
+                    error: {
+                        code: CONSTANTS.CODE.BAD_REQUEST,
+                        message: 'La tarjeta ingresa no cumple con la valdiacion Luhn'
+                    }
+                })
+            };
+        }
+
         const validateCVV = validateCardType(requestData.card_number, requestData.cvv);
         if (!validateCVV) {
             return {

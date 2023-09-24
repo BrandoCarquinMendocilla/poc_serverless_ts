@@ -17,7 +17,7 @@ defineFeature(feature, (test) => {
                 "email": "brando@gmail.com",
                 "expiration_year": "2026",
                 "cvv": "123",
-                "card_number": "5117401234567890" // MasterCard
+                "card_number": "4551038360146356" // MasterCard
             }));
         });
 
@@ -47,7 +47,7 @@ defineFeature(feature, (test) => {
                 "email": "brando@gmil.com",
                 "expiration_year": "2026",
                 "cvv": "123",
-                "card_number": "4000001234562899"// Visa
+                "card_number": "4551038360146356"// Visa
             }));
             response = await handler(event, null, null)
         });
@@ -65,7 +65,7 @@ defineFeature(feature, (test) => {
                 "email": "brando@gmail.com",
                 "expiration_year": "2026",
                 "cvv": "1234",
-                "card_number": "4000001234562899"
+                "card_number": "4551038360146356"
             }));
             response = await handler(event, null, null)
         });
@@ -86,7 +86,7 @@ defineFeature(feature, (test) => {
                 "email": "brando@gmail.com",
                 "expiration_year": "2026",
                 "cvv": "123",
-                "card_number": "4000001234562899"
+                "card_number": "4551038360146356"
             }));
             
             response = await handler(event, null, null)
@@ -104,8 +104,8 @@ defineFeature(feature, (test) => {
                 "expiration_month": "05",
                 "email": "brando@gmail.com",
                 "expiration_year": "2026",
-                "cvv": "1234",
-                "card_number": "375987654321001" // Amex
+                "cvv": "123",
+                "card_number": "4551038360146356" // Amex
             }));
         });
 

@@ -77,4 +77,42 @@ Brando Javier Carquin Mendocilla
 Este proyecto está bajo la Licencia MIT. Consulta el archivo LICENSE para obtener más detalles.
 
 ## Notas adicionales
-El servicio de genaración de token cumple la funcionalidad de generar un token y eliminarlo dinamicamente de la bd no relacional MongoDB durante 15 min
+# Base de Datos MongoDB
+
+Este proyecto utiliza MongoDB como base de datos para almacenar y administrar datos. A continuación, se detallan los pasos para configurar y crear una tabla en MongoDB.
+
+### Configuración
+
+Asegúrate de tener MongoDB instalado en tu entorno de desarrollo. Puedes descargar MongoDB desde [el sitio web oficial de MongoDB](https://www.mongodb.com/try/download/community).
+
+### Creación de una Colección (Tabla)
+
+MongoDB utiliza colecciones en lugar de tablas para almacenar datos. Para crear una colección en MongoDB, puedes seguir estos pasos:
+
+1. Inicia el servidor de MongoDB en tu máquina local si aún no está en funcionamiento. Utiliza el siguiente comando:
+
+```bash
+   mongod
+```
+
+Abre una terminal y conéctate a la instancia de MongoDB utilizando el cliente de MongoDB (mongo):
+
+Crea una nueva base de datos (si aún no existe) o selecciona una base de datos existente donde deseas crear la colección. Por ejemplo, puedes crear una base de datos llamada "poc_ts_serverless" ejecutando:
+
+```bash
+   use poc_ts_serverless
+```
+
+Ahora puedes crear una colección en la base de datos. Por ejemplo, para crear una colección llamada "tokens", puedes ejecutar:
+
+```bash
+    db.createCollection("tokens")
+
+```
+Tu colección "tokens" ahora está lista para almacenar datos. Puedes comenzar a insertar, consultar y administrar datos en esta colección desde tu aplicación serverless.
+
+## Referencias
+
+Aquí encontrarás algunas fuentes útiles sobre la validación de tarjetas de crédito:
+
+- [Wikipedia - Algoritmo de Luhn](https://es.wikipedia.org/wiki/Algoritmo_de_Luhn): Información sobre el algoritmo de Luhn, utilizado para verificar números de tarjetas de crédito.
