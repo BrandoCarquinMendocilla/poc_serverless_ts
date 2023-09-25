@@ -80,6 +80,7 @@ Este proyecto está bajo la Licencia MIT. Consulta el archivo LICENSE para obten
 ## Notas adicionales
 # Base de Datos Mysql
 -- Crear la tabla 'tarjetas' para almacenar información de tarjetas
+```bash
 CREATE TABLE tarjetas (
     card_number varchar(18) PRIMARY KEY NOT NULL,
     expiration_month VARCHAR(2) NOT NULL,
@@ -87,9 +88,9 @@ CREATE TABLE tarjetas (
     expiration_year VARCHAR(4) NOT NULL,
     cvv VARCHAR(4) NOT NULL
 );
-
+```
 -- Definir un procedimiento almacenado 'sp_buscar_tarjeta' para buscar tarjetas por número de tarjeta y CVV
-
+```bash
 DELIMITER //
 CREATE PROCEDURE sp_buscar_tarjeta(
     IN cardNumber VARCHAR(16),
@@ -100,9 +101,10 @@ BEGIN
     WHERE card_number = cardNumber AND cvv = cvv;
 END //
 DELIMITER ;
+```
 
 -- Insertar una tarjeta de ejemplo en la tabla 'tarjetas'
-
+```bash
 INSERT INTO `poc_ts`.`tarjetas`
 (`card_number`,
 `expiration_month`,
@@ -111,6 +113,7 @@ INSERT INTO `poc_ts`.`tarjetas`
 `cvv`)
 VALUES
 ('4551038360146356', '05', 'juan@gmail.com', '2026', '123');
+```
 
 # Base de Datos MongoDB
 
@@ -142,7 +145,6 @@ Ahora puedes crear una colección en la base de datos. Por ejemplo, para crear u
 
 ```bash
     db.createCollection("tokens")
-
 ```
 Tu colección "tokens" ahora está lista para almacenar datos. Puedes comenzar a insertar, consultar y administrar datos en esta colección desde tu aplicación serverless.
 
