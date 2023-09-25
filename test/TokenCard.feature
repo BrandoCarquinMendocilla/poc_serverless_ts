@@ -24,3 +24,8 @@ Feature: Validación de Tarjetas de Crédito/Débito MasterCard - Visa - Amex
     And se verifica la información enviada en mysql y se registra la información enviada adicionando su token mongodb
     When Ejecutamos el Lambda TokenCard
     Then Mostramos la respuesta
+
+  Scenario: Error Service Mysql - Servicio de validación de Tarjetas con generación de token
+    And se presenta un error en el server de Mysql
+    When Ejecutamos el Lambda TokenCard
+    Then Mostramos la respuesta

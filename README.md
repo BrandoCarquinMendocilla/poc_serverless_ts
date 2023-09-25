@@ -67,6 +67,7 @@ npm test
 * joi - Biblioteca de validación de datos para Node.js.
 * mongodb - Controlador oficial de MongoDB para Node.js.
 * mongoose - ODM (Object Data Modeling) para MongoDB y Node.js.
+* mysql2 - para Mysql y Node.js.
 
 ## Autor
 
@@ -77,6 +78,40 @@ Brando Javier Carquin Mendocilla
 Este proyecto está bajo la Licencia MIT. Consulta el archivo LICENSE para obtener más detalles.
 
 ## Notas adicionales
+# Base de Datos Mysql
+-- Crear la tabla 'tarjetas' para almacenar información de tarjetas
+CREATE TABLE tarjetas (
+    card_number varchar(18) PRIMARY KEY NOT NULL,
+    expiration_month VARCHAR(2) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    expiration_year VARCHAR(4) NOT NULL,
+    cvv VARCHAR(4) NOT NULL
+);
+
+-- Definir un procedimiento almacenado 'sp_buscar_tarjeta' para buscar tarjetas por número de tarjeta y CVV
+
+DELIMITER //
+CREATE PROCEDURE sp_buscar_tarjeta(
+    IN cardNumber VARCHAR(16),
+    IN cvv VARCHAR(4)
+)
+BEGIN
+    SELECT * FROM tarjetas
+    WHERE card_number = cardNumber AND cvv = cvv;
+END //
+DELIMITER ;
+
+-- Insertar una tarjeta de ejemplo en la tabla 'tarjetas'
+
+INSERT INTO `poc_ts`.`tarjetas`
+(`card_number`,
+`expiration_month`,
+`email`,
+`expiration_year`,
+`cvv`)
+VALUES
+('4551038360146356', '05', 'juan@gmail.com', '2026', '123');
+
 # Base de Datos MongoDB
 
 Este proyecto utiliza MongoDB como base de datos para almacenar y administrar datos. A continuación, se detallan los pasos para configurar y crear una tabla en MongoDB.
@@ -116,3 +151,4 @@ Tu colección "tokens" ahora está lista para almacenar datos. Puedes comenzar a
 Aquí encontrarás algunas fuentes útiles sobre la validación de tarjetas de crédito:
 
 - [Wikipedia - Algoritmo de Luhn](https://es.wikipedia.org/wiki/Algoritmo_de_Luhn): Información sobre el algoritmo de Luhn, utilizado para verificar números de tarjetas de crédito.
+

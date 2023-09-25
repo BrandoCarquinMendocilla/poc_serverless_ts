@@ -4,6 +4,7 @@ import { validarLuhn, validateCardType } from './support/CardSupport';
 import { CONSTANTS_CARD } from './constant/CardConstant';
 import { CONSTANTS } from '../common/constant/ErrorConstant';
 import { registrarToken } from './service/MongoService';
+import { buscarTarjeta } from '../src/service/MysqlService';
 
 export const handler: any = async (event: any) => {
     if (event.body !== undefined && event.body !== null) {
@@ -19,7 +20,7 @@ export const handler: any = async (event: any) => {
             };
         }
         const validLuhn = validarLuhn(requestData.card_number);
-        if(!validLuhn){
+        if (!validLuhn) {
             return {
                 statusCode: CONSTANTS.CODE.BAD_REQUEST,
                 body: JSON.stringify({
@@ -45,19 +46,35 @@ export const handler: any = async (event: any) => {
         }
         const token = generateRandomToken(16);
 
-        try {
-            return await registrarToken(requestData, token);
-        } catch (error) {
+        const findCard = await buscarTarjeta(requestData.card_number, requestData.cvv)
+        if (findCard) {
+            try {
+                return await registrarToken(requestData, token);
+            } catch (error) {
+                return {
+                    statusCode: CONSTANTS.CODE.BAD_REQUEST,
+                    body: JSON.stringify({
+                        error: {
+                            code: CONSTANTS.CODE.BAD_REQUEST,
+                            details: error,
+                            message: CONSTANTS.ERROR_BD
+                        }
+                    })
+                };
+            }
+        } else {
             return {
                 statusCode: CONSTANTS.CODE.BAD_REQUEST,
                 body: JSON.stringify({
                     error: {
                         code: CONSTANTS.CODE.BAD_REQUEST,
-                        details: error,
-                        message: CONSTANTS.ERROR_BD
+                        details: CONSTANTS_CARD.VALID_EMPTY,
+                        message: CONSTANTS.VALIDATE_PAYLOAD
                     }
                 })
             };
+
         }
+
     }
 };

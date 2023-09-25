@@ -7,6 +7,7 @@ export default {
     testMatch: ['**/*.steps.ts'],
     coveragePathIgnorePatterns: [
         '../src/service/MongoService',
+        '../src/service/MysqlService',
         '../common/db/MongoDB'
     ]
 };

@@ -50,7 +50,7 @@ export const buscarToken = async (query: Object) => {
     if (db) {
         const collection = db.collection('tokens');
         const cursor = collection.find(query);
-        const result =  await cursor.toArray()        
+        const result = await cursor.toArray()
 
         if (result.length > 0) {
             return {
@@ -62,7 +62,7 @@ export const buscarToken = async (query: Object) => {
                 })
             };
         }
-    
+
         return {
             statusCode: CONSTANTS.CODE.FORBIDDEN,
             body: JSON.stringify({

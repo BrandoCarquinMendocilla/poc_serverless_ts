@@ -1,6 +1,4 @@
 import { MongoClient } from 'mongodb';
-
-
 export class connectToDatabase {
     public async connectMongo(){
         const client = new MongoClient('mongodb://127.0.0.1:27017');
