@@ -79,6 +79,12 @@ Este proyecto está bajo la Licencia MIT. Consulta el archivo LICENSE para obten
 
 ## Notas adicionales
 # Base de Datos Mysql
+-- Crear la base de datos
+```bash
+ CREATE DATABASE poc_ts;
+ USE poc_ts;
+```
+
 -- Crear la tabla 'tarjetas' para almacenar información de tarjetas
 ```bash
 CREATE TABLE tarjetas (
